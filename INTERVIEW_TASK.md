@@ -6,6 +6,18 @@ This repository contains a minimal HTTP service written in Go. It exposes two en
 
 You may use standard library packages, third-party libraries, or both. Document any assumptions you make.
 
+### Bonus signals (not required)
+
+These are not part of the scored requirements, but strong candidates often demonstrate:
+
+| Signal | Weight |
+|--------|--------|
+| **Using code generation tools** (e.g. `go generate`, `stringer`, OpenAPI/protobuf codegen) where they reduce boilerplate | **+** |
+| **Writing your own code generator** for repetitive wiring (e.g. rate-limit keys, handler registration, config structs) | **++** |
+| **Reusable abstractions** — packages/modules generic enough to drop into other services without greeting-specific coupling | **++** |
+
+If you use or build generators, briefly explain what they produce and how to run them in `NOTES.md`.
+
 ## Starting Point
 
 The service currently:
@@ -103,6 +115,12 @@ Shut down the service cleanly when it receives a termination signal (e.g. `SIGIN
 
 Document how shutdown is triggered and any timeout or behavior choices in `NOTES.md`.
 
+### 8. Persian & Bilingual Greeters (5 pts)
+
+Extend `GreetingService` with additional implementations:
+
+- **Persian greeter** — returns greet/goodbye messages in Persian (Farsi), following the same name rules as the English implementation (first name only vs first + last name)
+
 ## Deliverables
 
 1. Your implementation (code changes in this repo or a fork)
@@ -111,6 +129,7 @@ Document how shutdown is triggered and any timeout or behavior choices in `NOTES
    - How to configure the service (port, OK print interval, metrics, rate limits)
    - Where to find metrics and how to interpret them
    - How graceful shutdown works (signals, timeouts, background goroutines)
+   - How to use Persian and bilingual greeters (language selection, example requests)
    - Any trade-offs or shortcuts you took due to time constraints
 
 ## Evaluation Criteria
@@ -124,8 +143,11 @@ Document how shutdown is triggered and any timeout or behavior choices in `NOTES
 | Configurable rate limit | 15 | Flexible config, sensible defaults, documented |
 | Module design & DI | 15 | Clear boundaries, testable, idiomatic Go |
 | Graceful shutdown | 5 | Signal handling, drain in-flight work, clean exit |
+| Persian & bilingual greeters | 5 | Correct Persian text, bilingual composition, clean DI |
 | Code quality | — | Readability, error handling, idiomatic patterns |
-
+| Using code generators | bonus (+) | Appropriate use of existing codegen tools |
+| Writing code generators | bonus (++) | Custom generator that reduces repetitive wiring |
+| Reusable abstractions | bonus (++) | Modules usable across services, not tied to this app |
 
 ## Out of Scope (Optional)
 
